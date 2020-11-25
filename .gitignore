@@ -27,3 +27,11 @@ Temporary Items
 .apdisk
 
 ### End of https://www.gitignore.io/api/macos
+
+
+
+### Project specific ###
+
+/**/hs_ed25519_public_key
+/**/hs_ed25519_secret_key
+/**/hostname
