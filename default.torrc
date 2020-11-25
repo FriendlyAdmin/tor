@@ -1,0 +1,91 @@
+## Default Tor config file for Tor image in a Docker container, designed to do literally nothing.
+## See https://torproject.org/docs/tor-manual.html for more details.
+
+
+
+##########
+########## General options ##########
+##########
+
+## Set appropriate logging levels and route logs to appropriate system channels, so Docker can handle them.
+## Available logging levels: debug, info, notice, warn, err.
+## notice and warn entries will go to stdout, err - to stderr.
+Log notice-warn stdout
+Log err stderr
+# Debug'ish option - uncomment if necessary (actual debug level is way too much):
+#Log info-err stdout
+
+## Explicitly tell Tor to sanitize sensitive information from log entries.
+## This may be set to 0 for debugging or for investigating ongoing attacks.
+##
+## IMPORTANT: Keep this on (1) for production, since otherwise an attacker may get access to sensitive data, if the node was compromised.
+SafeLogging 1
+
+## Set a default directory for keys/etc.
+## Should be attached to Docker volume for Docker setups.
+DataDirectory /var/lib/tor
+
+## Explicitly tell Tor not to run as daemon, since Docker expects
+## processes to run in foreground inside a container.
+RunAsDaemon 0
+
+## Explicitly tell Tor NOT to use crypto hardware acceleration (AES instruction set).
+## Turning this on can greatly improve Tor performance,
+## if a PC/OS support everything needed for hardware acceleration.
+## Check out this StackExchange answer for more info:
+## https://tor.stackexchange.com/a/19550
+HardwareAccel 0
+
+## By setting this to 1 you can tell Tor to try to treat your storage device a bit more carefully, by writing less data to it.
+## May be usefull when running on flash memory or other media with limited number of writes.
+AvoidDiskWrites 0
+
+## Explicitly tell Tor not to listen for any inbound connections from other Tor clients/servers,
+## i.e. not to act as a relay, exit node or bridge.
+ORPort 0
+
+## Explicitly tell Tor to listen for proxy connections from other applications on this machine,
+## and only this machine, i.e. act as a client proxy.
+## May be set to 0 to turn proxy off, but don't forget to get rid of the healthcheck in Dockerfile.
+##
+## This option is turned on only for a Docker healthcheck,
+## since this config is not designed for client proxy usage scenario.
+SocksPort localhost:9050
+
+## Forbid SOCKS connections from applications that are resolving DNS on their own,
+## which may allow for traffic correlation attack.
+SafeSocks 1
+
+## Do not do a log entry about DNS safety of SOCKS request,
+## since logs would be cluttered due to regular container healthchecks.
+TestSocks 0
+
+## Explicitly tell Tor not to run any executables.
+NoExec 1
+
+## Set this to 1 if you host this Tor node in a place where access to other Tor nodes may be restricted or blocked,
+## which will tell Tor to route traffic through bridges described by "Bridge" config lines,
+## so find some bridges and add them to config for this to work.
+##
+## See https://torproject.org/docs/bridges.html or https://bridges.torproject.org for details,
+## or, if that page isn't available:
+## send "get bridges" from Gmail or Riseup address at bridges@bridges.torproject.org,
+## and you will get back a list of available bridges.
+##
+## Using bridges with pluggable transports, which may be necessary in places with strong censorship,
+## is outside of the scope of this config, you can read more by links above.
+UseBridges 0
+
+## Bridge config lines.
+## Format:
+#Bridge [transport] IP:ORPort [fingerprint]
+## Example:
+#Bridge 60.16.182.53:9001 cc8ca10a63aae8176a52ca5129ce816d011523f5
+
+## Tell Tor to choose a bunch of long-term entry points and try to stick with them for a while.
+## Default and recommended behavior, since it lowers the probability of adversary observing part of your paths.
+UseEntryGuards 1
+
+## Explicitly tell Tor not to fulfill requests for connections to internal addresses, like 192.168.0.1 and 127.0.0.1.
+## Multicast DNS hostnames (like *.local) are also rejected.
+ClientRejectInternalAddresses 1
