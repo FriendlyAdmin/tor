@@ -3,7 +3,7 @@
 # Which is the only way to get the functionality required to use Onionbalance.
 #
 # To sucessfully build an image from this Dockerfile the following build ARGs must be provided:
-# ALPINE_VERSION, TOR_VERION
+# ALPINE_VERSION, TOR_VERSION
 #
 
 # This version of Alpine will be used at every stage.
