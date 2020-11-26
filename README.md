@@ -33,7 +33,7 @@ docker container run --read-only -d --name=tor --volume /path/to/torrc:/etc/tor/
 ```
 
 Note: The image contains a `torrc-defaults` file baked in (see `default.torcc` file in this repo).
-Do not override it - it contains some important security configration and also options required for healthchecks to work.
+Do not override it - it contains some important security configration and also options required for healthchecks and Docker logging to work.
 Provide your custom config as `/etc/tor/torrc`. Tor will load both config files on startup, options in `torrc` override the ones from `torrc-default`.
 
 See comments in `default.torrc` and [Tor manual](https://torproject.org/docs/tor-manual.html) for detailed explanation of every configuration option.
