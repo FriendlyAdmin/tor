@@ -13,6 +13,7 @@ Will not work as a general purpose proxy out of the box by design - the included
 Intended to be used as a part of a hidden service setup or as a general-purpose SOCKS4A/SOCKS5 Tor proxy, depending on the final config provided.
 
 [Docker Hub repo](https://hub.docker.com/r/friendlyadmin/tor)
+[GitHub repo](https://github.com/FriendlyAdmin/tor)
 
 ## Usage
 
