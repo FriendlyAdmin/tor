@@ -6,6 +6,8 @@ Comes with a reasonable level of hardening, reasonable defaults for Tor config a
 
 Built for Docker Hub automatically by utilizing a GitHub hook, see `hooks/build` for details.
 
+Tor is being built from souces acquired automatically during build from [Tor distribution server](https://dist.torproject.org/) and verified using Tor Project's release PGP key. See `Dockerfile` for details on how it works.
+
 Will not work as a general purpose proxy out of the box by design - the included Tor config will only allow proxy connections from inside the container.
 
 Intended to be used as a part of a hidden service setup or as a general-purpose SOCKS4A/SOCKS5 Tor proxy, depending on the final config provided.
