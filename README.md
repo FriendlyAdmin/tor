@@ -62,7 +62,7 @@ It is recommended to run this image as `read_only` - just as an additional prote
 To build the image manually run from inside the repo root directory:
 
 ```
-docker build --build-arg ALPINE_VERSION=3.12 --build-arg TOR_VERSION=0.4.4.6 YOU_DESIRED_TAG .
+docker build --build-arg ALPINE_VERSION=3.12 --build-arg TOR_VERSION=0.4.4.6 YOUR_DESIRED_IMAGE_TAG .
 ```
 
 You must provide `ALPINE_VERSION` and `TOR_VERSION` build arguments.
