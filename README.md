@@ -73,4 +73,4 @@ See tags on [Docker Hub Alpine repo](https://hub.docker.com/_/alpine) for what A
 
 [FriendlyAdmin/onionbalance](https://github.com/FriendlyAdmin/onionbalance) - Tor and Onionbalance neatly packaged in a single Docker image to serve as a separated Onionbalance setup for a Tor hidden service.
 
-[FriendlyAdmin/tor-hs](https://github.com/FriendlyAdmin/tor-hs) - A pre-made simple Docker Compose configuration for running a Tor hidden service.
+[FriendlyAdmin/tor-hs](https://github.com/FriendlyAdmin/tor-hs) - A pre-made simple Docker Compose configuration for running an Onionbalanced Tor hidden service.
